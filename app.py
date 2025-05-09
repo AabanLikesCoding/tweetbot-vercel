@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 import tweepy
 
-st.set_page_config(page_title="TweetBot", page_icon="🐦", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="ILuvTweetin", page_icon="🐦", layout="centered", initial_sidebar_state="collapsed")
 
 st.markdown("""
     <style>
@@ -49,7 +49,7 @@ st.markdown("""
 
 st.markdown("<div style='height:32px'></div>", unsafe_allow_html=True)
 
-profile_img = 'https://avatars.githubusercontent.com/u/9919?s=200&v=4'  # Placeholder, replace with your own
+profile_img = 'https://avatars.githubusercontent.com/u/126097457?s=400&u=d57ec733497f930b1ff3d284fdc02258b6cb7304&v=4'  # Placeholder, replace with your own
 st.markdown(f'<img src="{profile_img}" class="profile-pic" />', unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align:center; color:white;'>TweetBot</h1>", unsafe_allow_html=True)
