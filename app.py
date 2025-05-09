@@ -55,7 +55,7 @@ st.markdown(f'<img src="{profile_img}" class="profile-pic" />', unsafe_allow_htm
 st.markdown("<h1 style='text-align:center; color:white;'>TweetBot</h1>", unsafe_allow_html=True)
 
 with st.expander("API Keys", expanded=True):
-    openai_key = st.text_input("OpenAI API Key", type="password")
+    gemini_key = st.text_input("Gemini API Key", type="password")
     tw_key = st.text_input("Twitter API Key", type="password")
     tw_secret = st.text_input("Twitter API Secret Key", type="password")
     tw_token = st.text_input("Twitter Access Token", type="password")
@@ -66,22 +66,17 @@ with st.form("tweet_form", clear_on_submit=False):
     topic = st.text_input("Topic", key="topic")
     gen = st.form_submit_button("Generate Tweet")
     tweet = ""
-    if gen and openai_key and topic:
+    if gen and gemini_key and topic:
         try:
-            client = openai.OpenAI(api_key=openai_key)
-            resp = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "you tweet like a funny real twitter user"},
-                    {"role": "user", "content": f"make a tweet about {topic}. keep it short n like a human made it"}
-                ],
-                temperature=0.8,
-                max_tokens=60
-            )
-            tweet = resp.choices[0].message.content.strip()
+            import google.generativeai as genai
+            genai.configure(api_key=gemini_key)
+            model = genai.GenerativeModel('gemini-pro')
+            prompt = f"make a tweet about {topic}. keep it short n like a human made it. tweet like a funny real twitter user."
+            resp = model.generate_content(prompt)
+            tweet = resp.text.strip()
             st.session_state['tweet'] = tweet
         except Exception as e:
-            st.error(f"OpenAI error: {e}")
+            st.error(f"Gemini error: {e}")
     elif 'tweet' in st.session_state:
         tweet = st.session_state['tweet']
 
