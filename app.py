@@ -74,7 +74,7 @@ with st.form("tweet_form", clear_on_submit=False):
             model_names = [model.name for model in models]
             st.write("Available Gemini models:")
             st.write(model_names)
-            model = genai.GenerativeModel('gemini-pro')
+            model = genai.GenerativeModel('gemini-1.0-pro-latest')
             prompt = f"make a tweet about {topic}. keep it short n like a human made it. tweet like a funny real twitter user."
             resp = model.generate_content(prompt)
             tweet = resp.text.strip()
