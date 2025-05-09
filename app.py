@@ -70,7 +70,7 @@ with st.form("tweet_form", clear_on_submit=False):
         try:
             import google.generativeai as genai
             genai.configure(api_key=gemini_key)
-            model = genai.GenerativeModel('gemini-pro')
+            model = genai.GenerativeModel('gemini-1.0-pro')
             prompt = f"make a tweet about {topic}. keep it short n like a human made it. tweet like a funny real twitter user."
             resp = model.generate_content(prompt)
             tweet = resp.text.strip()
