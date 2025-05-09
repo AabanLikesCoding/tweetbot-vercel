@@ -67,9 +67,9 @@ with st.form("tweet_form", clear_on_submit=False):
     gen = st.form_submit_button("Generate Tweet")
     tweet = ""
     if gen and openai_key and topic:
-        openai.api_key = openai_key
         try:
-            resp = openai.ChatCompletion.create(
+            client = openai.OpenAI(api_key=openai_key)
+            resp = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "you tweet like a funny real twitter user"},
@@ -78,7 +78,7 @@ with st.form("tweet_form", clear_on_submit=False):
                 temperature=0.8,
                 max_tokens=60
             )
-            tweet = resp['choices'][0]['message']['content'].strip()
+            tweet = resp.choices[0].message.content.strip()
             st.session_state['tweet'] = tweet
         except Exception as e:
             st.error(f"OpenAI error: {e}")
@@ -98,4 +98,4 @@ if tweet:
             st.error(f"Twitter error: {e}")
 
 st.markdown('<div class="section-header">Project Showcase</div>', unsafe_allow_html=True)
-st.markdown('<div class="gray-box" style="color:#bbb;">Minimalist TweetBot. Generate and post tweets using OpenAI and Twitter APIs. Built with Streamlit. Dark, clean, deployable to Vercel or Streamlit Cloud.</div>', unsafe_allow_html=True)
+st.markdown('<div class="gray-box" style="color:#bbb;">This is a bot made w/ streamlit python and twitter/openai api</div>', unsafe_allow_html=True)
