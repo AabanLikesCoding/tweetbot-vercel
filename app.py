@@ -49,7 +49,7 @@ st.markdown("""
 
 st.markdown("<div style='height:32px'></div>", unsafe_allow_html=True)
 
-profile_img = 'https://avatars.githubusercontent.com/u/126097457?s=400&u=d57ec733497f930b1ff3d284fdc02258b6cb7304&v=4'  # Placeholder, replace with your own
+profile_img = 'https://avatars.githubusercontent.com/u/126097457?s=400&u=d57ec733497f930b1ff3d284fdc02258b6cb7304&v=4' 
 st.markdown(f'<img src="{profile_img}" class="profile-pic" />', unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align:center; color:white;'>IHateDebugPlsAppearTitle</h1>", unsafe_allow_html=True)
